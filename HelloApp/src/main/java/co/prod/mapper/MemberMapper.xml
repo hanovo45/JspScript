@@ -31,4 +31,12 @@
     insert into members (member_id, member_name, member_tel, member_addr, member_pw)
     values(#{memberId}, #{memberName}, #{memberTel}, #{memberAddr}, #{memberPw})
   </insert>
+  
+  <update id="deleteMembers" parameterType="co.prod.vo.MembersVO">
+	  delete from members
+	  <foreach collection="list" item="item" open=" where member_id in (" 
+	           close=")" separator=",">
+	    #{item.memberId}
+	  </foreach> 
+	</update>
 </mapper>

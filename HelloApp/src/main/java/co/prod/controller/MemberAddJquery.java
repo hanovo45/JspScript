@@ -21,12 +21,12 @@ public class MemberAddJquery implements Control {
 	
 		MembersVO vo = new MembersVO();
 		
-		vo.setMemberId(request.getParameter("id"));
+		vo.setMemberId(request.getParameter("id"));		
 		vo.setMemberName(request.getParameter("name"));
 		vo.setMemberTel(request.getParameter("tel"));
-		vo.setMemberAddr(request.getParameter("addr"));
-		vo.setMemberPw(request.getParameter("pw"));
-		
+		vo.setMemberAddr(request.getParameter("addres"));
+		vo.setMemberPw(request.getParameter("passwd"));
+		System.out.println(vo);
 		MemberService service = new MemberServiceMybatis();
 		
 		boolean result = service.addMembers(vo);

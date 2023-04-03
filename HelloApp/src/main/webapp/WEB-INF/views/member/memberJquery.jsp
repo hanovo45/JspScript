@@ -28,7 +28,7 @@
                         console.log(idx, member);
                         $('#list').append(
                             // tr>td*4 생성
-                            $('<tr />').append($('<td />').text(member.memberId),
+                            $('<tr id=' + member.memberId + ' />').append($('<td />').text(member.memberId),
                                 $('<td />').text(member.memberName),
                                 $('<td />').text(member.memberAddr),
                                 $('<td />').text(member.memberTel),
@@ -66,9 +66,9 @@
                     data: {
                         id: $('#id').val(),
                         name: $('#name').val(),
-                        addr: $('#addres').val(),
+                        addres: $('#addres').val(),
                         tel: $('#tel').val(),
-                        pw: $('#passwd').val()
+                        passwd: $('#passwd').val()
                     },
                     method: "post", // HTTP 요청 방식(GET, POST)
                     dataType: "json", // 서버에서 보내줄 데이터의 타입
@@ -101,25 +101,25 @@
                 })
             })
 
-            //선택삭제버튼 이벤트
-            $('#delSelected').on('click', function (e) {
-                e.preventDefault();
-				let memberIdAray = {}
-                // $('input:checked').parentsUntil('tbody').remove();
-
-                $('#list input:checked').each(function(idx,item){
-                	console.log($(item).parent().parent().attr('id'))
-                	//memberIdAray.push({'memberId': $(item).parent().parent().attr('id')})
-                //     $(item).closest('tr').remove();
-                 	memberIdAry.memberId = $(item).parent().parent().attr('id');
-                 })
-                 console.log(memberIdAray);
+            // 선택삭제버튼 이벤트 & 이벤트 핸들러.
+      $('#delSelected').on('click', function (e) {
+        e.preventDefault();
+        let memberIdAray = {}
+        console.log($('#list input:checked').closest('tr'));
+        //$('#list input:checked').closest('tr').remove();
+         $('#list input:checked').each(function (idx, item) {
+        	 console.log($(item).parent().parent().attr('id'))
+        	 //memberIdAray.push({'memberId': $(item).parent().parent().attr('id')})
+        	 memberIdAry.memberId = $(item).parent().parent().attr('id');
+           //$(item).closest('tr').remove();
+         })
+         console.log(memberIdAray);
                 
                 // ajax 호출
                 $.ajax({
                 	url:"memberRemoveJquery.do",	// 호출 컨트롤
                 	method:'post',
-                	data:{memberId:'user01', memberId:'user02'}
+                	data:{memberId:'user01', memberId:'user02'},
                 	success: function(result){
                 		
                 	},
@@ -129,29 +129,38 @@
                 })
             })
 
-            // 전부체크
-            $('th>input[type="checkbox"]').on('change', function () {
-                $('td>input').prop({
-                    checked: this.checked
-                })
-            })
+            // 전체선택/ 전체해제
+      $('th>input[type="checkbox"]').on('change', function () {
+        // $('td>input').attr('id',344)
+        $('td>input').prop({
+          checked: this.checked
+        })
+      })
 
-            // th>input 과 td>input을 비교해서 전체선택이 되도록
-            // 선택된 갯수를 비교?
-            // ajax호출의 결과로 만들어지는 부분. 이벤트 위임
-            $('#list').on('change', 'td>input[type="checkbox"]', function () {
-                // $('td>')
-                console.log(this);
-                let checkCnt = $('td>input[type="checkbox"]:checked').length;
-                let allCnt = $('td>input[type="checkbox"]').length;
+            // th>input 과 td>input 을 비교해서 전체선택이 되도록.
+      // 선택된 갯수를 비교?
+      // ajax호출의 결과로 만들어지는 부분. 이벤트 위임.
+      $('#list').on('change', 'td>input[type="checkbox"]', function () {
+        //$('td>input[type="checkbox"]').on('change', function () {
+        console.log(this);
+        let checkCnt = $('td>input[type="checkbox"]:checked').length;
+        let allCnt = $('td>input[type="checkbox"]').length;
+        // 전체갯수 vs. 선택된 갯수 
+        // if (checkCnt == allCnt) {
+        //   $('th>input[type="checkbox"]').prop({
+        //     checked: true
+        //   })
+        // } else {
+        //   $('th>input[type="checkbox"]').prop({
+        //     checked: false
+        //   })
+        // }
 
-                if (checkCnt == allCnt) {
-                    $('#allCheck').prop('checked', ture)
-                } else {
-                    $('#allCheck').prop('checked', false)
-                }
-                td > input[type = "checkbox"]
-            })
+        $('th>input[type="checkbox"]').prop({
+          checked: checkCnt == allCnt ? true : false
+        })
+
+      })
         });
     </script>
 </head>

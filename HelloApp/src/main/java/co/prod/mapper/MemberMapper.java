@@ -17,6 +17,8 @@ public interface MemberMapper {
 	
 	// 회원삭제.
 	public int deleteMember(String id);
+	// jquery 삭제
+	public int deleteMembers(List<MembersVO> list);
 	
 	// 회원등록.
 	public int insertMember(MemberVO vo);

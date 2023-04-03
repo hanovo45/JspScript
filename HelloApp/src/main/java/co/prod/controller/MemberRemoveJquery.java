@@ -11,8 +11,8 @@ public class MemberRemoveJquery implements Control {
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		
 		String[] members = request.getParameterValues("memberId");
-		System.out.println(members);
-		
+		for (String member : members)
+			System.out.println(member);
 		return null;
 	}
 

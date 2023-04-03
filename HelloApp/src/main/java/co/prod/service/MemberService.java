@@ -26,6 +26,9 @@ public interface MemberService {
 
 	// 회원삭제처리.
 	public boolean removeMember(String id);
+	
+	// jquery 삭제
+	public boolean removeMembers(List<MembersVO> list);
 
 	// id/pw 로그인 처리.
 	public MemberVO login(MemberVO vo);

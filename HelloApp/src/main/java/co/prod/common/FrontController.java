@@ -58,7 +58,7 @@ public class FrontController extends HttpServlet {
 		// jquery용 목록 가져오기
 		map.put("/memberListJquery.do", new MemberListJquery());
 		// jqeury용 추가
-		map.put("memberaddJquery.do", new MemberAddJquery());
+		map.put("/memberaddJquery.do", new MemberAddJquery());
 		// jquery 삭제
 		map.put("/memberRemoveJquery.do", new MemberRemoveJquery());
 		

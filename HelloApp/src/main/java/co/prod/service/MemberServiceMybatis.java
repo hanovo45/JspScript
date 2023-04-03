@@ -57,4 +57,9 @@ public class MemberServiceMybatis implements MemberService {
 		return mapper.insertMembers(vo) == 1;
 	}
 
+	@Override
+	public boolean removeMembers(List<MembersVO> list) {
+		return mapper.deleteMembers(list) > 0;
+	}
+
 }
