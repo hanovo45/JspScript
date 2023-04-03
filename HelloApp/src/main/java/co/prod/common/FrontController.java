@@ -19,9 +19,13 @@ import co.prod.controller.FullCalendarControl;
 import co.prod.controller.FullCanlenarAddAjax;
 import co.prod.controller.MapForm;
 import co.prod.controller.MemberAddAjax;
+import co.prod.controller.MemberAddJquery;
+import co.prod.controller.MemberJquery;
 import co.prod.controller.MemberListAjax;
 import co.prod.controller.MemberListControl;
+import co.prod.controller.MemberListJquery;
 import co.prod.controller.MemberRemoveAjax;
+import co.prod.controller.MemberRemoveJquery;
 import co.prod.controller.MembersControl;
 import co.prod.controller.ProductInfoControl;
 import co.prod.controller.ProductListControl;
@@ -49,6 +53,15 @@ public class FrontController extends HttpServlet {
 		map.put("/memberRemoveAjax.do", new MemberRemoveAjax());
 		map.put("/memberAddAjax.do", new MemberAddAjax());
 
+		// jquery용 ajax.
+		map.put("/memberJquery.do", new MemberJquery());
+		// jquery용 목록 가져오기
+		map.put("/memberListJquery.do", new MemberListJquery());
+		// jqeury용 추가
+		map.put("memberaddJquery.do", new MemberAddJquery());
+		// jquery 삭제
+		map.put("/memberRemoveJquery.do", new MemberRemoveJquery());
+		
 		// 상품목록.
 		map.put("/productList.do", new ProductListControl());
 		// 상품한건정보.

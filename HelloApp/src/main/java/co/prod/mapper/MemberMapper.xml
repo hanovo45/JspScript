@@ -23,4 +23,12 @@
     values(#{id}, #{name}, #{passwd}, #{mail}, #{auth})
   </insert>
 
+  <select id="getMembersList" resultType="co.prod.vo.MembersVO">
+    select * from members order by member_id desc
+  </select>
+  
+  <insert id="insertMembers" parameterType="co.prod.vo.MembersVO">
+    insert into members (member_id, member_name, member_tel, member_addr, member_pw)
+    values(#{memberId}, #{memberName}, #{memberTel}, #{memberAddr}, #{memberPw})
+  </insert>
 </mapper>

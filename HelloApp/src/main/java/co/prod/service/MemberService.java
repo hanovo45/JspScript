@@ -3,13 +3,20 @@ package co.prod.service;
 import java.util.List;
 
 import co.prod.vo.MemberVO;
+import co.prod.vo.MembersVO;
 
 public interface MemberService {
 	// 회원목록.
 	public List<MemberVO> getMembers();
+	
+	// jquery 회원목록
+	public List<MembersVO> getMembersList();
 
 	// 회원등록.
 	public boolean addMember(MemberVO vo);
+	
+	// jquery 추가
+	public boolean addMembers(MembersVO vo);
 
 	// 회원조회.
 	public MemberVO getMember(String id);
