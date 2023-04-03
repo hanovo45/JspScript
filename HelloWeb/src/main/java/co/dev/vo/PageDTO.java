@@ -1,0 +1,28 @@
+package co.dev.vo;
+
+import lombok.Data;
+
+@Data
+public class PageDTO {
+
+	private int startPage;	// 첫페이지
+	private int endPage;	// 마지막 페이지
+	private boolean prev, next; // 이전, 다음 페이지
+	private int page;		// 현재 페이지
+	
+	public PageDTO(int page, int total) {
+		
+		// total: 235건으로 가정
+		this.page = page;
+		this.endPage = (int) Math.ceil(page/10.0) * 10;	// 소수점처리하려고 = 10
+		this.startPage = this.endPage - 9;
+		
+		int realEnd = (int) Math.ceil(total * 1.0/ 10);
+		if(this.endPage > realEnd) {
+			this.endPage = realEnd;	// 22page 24
+		}
+		
+		this.prev = this.startPage > 1;
+		this.next = this.endPage < realEnd;	// 3 -> 10
+	}
+}
